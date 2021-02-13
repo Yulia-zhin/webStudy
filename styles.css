@@ -1,0 +1,246 @@
+button{
+font-family: Comic Sans MS, Comic Sans, cursive;
+}
+.navPanel{
+	color: #696969;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+	background-color: #F0FFF0;
+	border: 3px solid #20B2AA;
+	font-size: 25px;
+	position: absolute;
+	left: 5%;
+	text-align: center;
+	width: 1150px;
+	margin: 20px;
+	height: 65px;
+
+}
+
+.activebutton{
+	margin: 14px 20px;
+	font-family: Comic Sans MS, Comic Sans, cursive;
+	font-weight: bold;
+	width: 300px;
+	font-size: 15px;
+	text-decoration: none;
+	display: inline-block;
+	padding: 10px 20px;
+	position: relative;
+	color: #008000;
+	border: 2px solid #006400;
+	background: none;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+.activebutton:before, .border-button:after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	opacity: 0;
+	box-sizing: border-box;
+  }
+  .activebutton:before {
+	bottom: 0;
+	left: 0;
+	border-left: 2px solid #006400;
+	border-top: 2px solid #006400;
+	transition: 0s ease opacity .8s, .2s ease width .4s, .2s ease height .6s;
+  }
+  .activebutton:after {
+	top: 0;
+	right: 0;
+	border-right: 2px solid #006400;
+	border-bottom: 2px solid #006400;
+	transition: 0s ease opacity .4s, .2s ease width, .2s ease height .2s;
+  }
+  .activebutton:hover:before, 
+  .activebutton:hover:after {
+	height: 100%;
+	width: 100%;
+	opacity: 1;
+  }
+  .activebutton:hover:before {
+	transition: 0s ease opacity 0s, .2s ease height, .2s ease width .2s;
+  }
+  .activebutton:hover:after {
+	transition: 0s ease opacity .4s, .2s ease height .4s, .2s ease width .6s;
+  }
+  .activebutton:hover {
+	background: rgba(255, 255, 255, .2);
+  }
+
+  
+.passivebutton{
+	margin: 14px 20px;
+	font-family: Comic Sans MS, Comic Sans, cursive;
+	width: 300px;
+	font-size: 13px;
+	text-decoration: none;
+	display: inline-block;
+	padding: 10px 20px;
+	position: relative;
+	color: #000080;
+	border: 1px solid #000080;
+	background: none;
+	font-weight: 400;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+.passivebutton:before, .border-button:after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	opacity: 0;
+	box-sizing: border-box;
+  }
+.passivebutton:before {
+	bottom: 0;
+	left: 0;
+	border-left: 1px solid #000080;
+	border-top: 1px solid #000080;
+	transition: 0s ease opacity .8s, .2s ease width .4s, .2s ease height .6s;
+  }
+.passivebutton:after {
+	top: 0;
+	right: 0;
+	border-right: 1px solid #000080;
+	border-bottom: 1px solid #000080;
+	transition: 0s ease opacity .4s, .2s ease width, .2s ease height .2s;
+  }
+.passivebutton:hover:before, 
+.passivebutton:hover:after {
+	height: 100%;
+	width: 100%;
+	opacity: 1;
+  }
+.passivebutton:hover:before {
+	transition: 0s ease opacity 0s, .2s ease height, .2s ease width .2s;
+  }
+.passivebutton:hover:after {
+	transition: 0s ease opacity .4s, .2s ease height .4s, .2s ease width .6s;
+  }
+.passivebutton:hover {
+	background: rgba(255, 255, 255, .2);
+  }
+
+
+.Panel{
+	background: #F5FFFA;
+	font-size: 16px;
+	position: absolute;
+	top: 70px; /* Расстояние от верхнего края */
+	
+	
+}
+.student_list
+{
+	overflow: scroll;
+	height: 450px;
+    width: 400px;
+	background: #F5FFFA;
+	overflow-x: hidden;
+	
+}
+
+.company_list{
+	
+	overflow: scroll;
+	height: 450px;
+    width: 400px;
+	background: #F5FFFA;
+	overflow-x: hidden;
+}
+.Student_Events{
+	position: absolute;
+	top: 0px; /* Расстояние от верхнего края */
+    left: 400px; /* Расстояние от левого края */ 
+	width: 750px;
+	height: 500px;
+	overflow: scroll;
+	background: #F0F8FF;
+    overflow-x: hidden;
+	
+}
+
+.Company_Events{
+	position: absolute;
+	top: 0px; /* Расстояние от верхнего края */
+    left: 400px; /* Расстояние от левого края */ 
+	width: 750px;
+	height: 500px;
+	overflow: scroll;
+	background: #F0F8FF;
+    overflow-x: hidden;
+}
+
+.Event_Events{
+	position: absolute;
+	top: 0px; /* Расстояние от верхнего края */
+    left: 400px; /* Расстояние от левого края */ 
+	width: 750px;
+	height: 500px;
+	overflow: scroll;
+	background: #F0F8FF;
+    overflow-x: hidden;
+}
+
+.passivebuttonStudent{
+	height: 40px;
+	width: 300px;
+	background: #6495ED;
+	font-size: 16px;
+	margin: 10px;
+}
+
+.activebuttonStudent{
+	height: 40px;
+	width: 300px;
+	background: #6495ED;
+	font-size: 16px;
+	margin: 10px;
+}
+
+.passivebuttonEvent{
+	height: 33px;
+	width: 500px;
+	background: #87CEFA;
+	font-size: 15px;
+	margin: 10px;
+}
+
+.InputName{
+width: 120px;}
+
+.opscompany{
+	margin: 10px;
+}
+
+.eventButton{
+	margin-top: 10px;
+	background: #ADD8E6;
+}
+
+.opstudent{
+	margin-bottom: 10px;
+	margin-top: 10px;
+	margin-left: 50px;
+	padding: 10px;
+	border: 1px solid #ADD8E6;
+}
+.opscompany{
+	margin-bottom: 10px;
+	margin-top: 10px;
+	margin-left: 50px;
+	padding: 10px;
+	border: 1px solid #ADD8E6;
+}
+.opstudentEvent {
+	margin-bottom: 10px;
+	margin-top: 10px;
+	margin-left: 180px;
+	padding: 10px;
+	border: 1px solid #ADD8E6;
+}

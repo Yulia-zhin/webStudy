@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>РДWП-</title>
+    		<link rel="stylesheet" type="text/css" href="./styles.css"> 
+
+   
+		<script src="./ReactFramework/react.development.js"></script>
+		<script src="./ReactFramework/react-dom.development.js"></script>
+		<script src="./ReactFramework/babel.min.js"></script>
+  </head>
+   <body>
+    <div id="root"></div>
+	 <script type="text/babel">
+	  
+	  
+const Data_Students = [   
+						{id:1,	name:'Петров П.П.', 	 spec:'ИСиТ', 	 group:1,	syear:2016}, 
+						{id:2,	name:'Иванов И.И.',		 spec:'ИСиТ',    group:1,	syear:2016}, 
+						{id:3,	name:'Сидоров С.С.',	 spec:'ПОИТ',    group:4,	syear:2016},
+						{id:4,	name:'Кириллов К.К.',	 spec:'ПОИТ',    group:5,	syear:2016},
+						{id:5,	name:'Алексеев А.А.',	 spec:'ДЭВИ',    group:9,	syear:2016},
+						{id:6,	name:'Сергеев С.С.',     spec:'ПОИБМС',  group:7,	syear:2017},
+						{id:7,	name:'Михайлов М.М.',    spec:'ПОИБМС',  group:8,	syear:2017},
+						{id:8,	name:'Александров А.А.', spec:'ПОИБМС',  group:7,	syear:2017},
+						{id:9,	name:'Кислый К.А.',      spec:'ДЭВИ',    group:10,	syear:2017},
+						{id:10,	name:'Прокопеня А.А.',   spec:'ПОИБМС',  group:7,	syear:2017},
+						{id:11,	name:'Ветров А.В.',      spec:'ПОИБМС',  group:8,	syear:2017},
+						{id:12,	name:'Викторов В.В.',    spec:'ИСиТ',    group:3,	syear:2017},
+						{id:13,	name:'Алексей А.А.',     spec:'ПОИБМС',  group:7,	syear:2015},
+						{id:14,	name:'Григорьев  Г.Г.',  spec:'ДЭВИ',    group:9,	syear:2016},
+						{id:15,	name:'Владимиров В.В.',  spec:'ПОИБМС',  group:8,	syear:2017},
+						{id:16,	name:'Петрова П.А.',      spec:'ДЭВИ',    group:9,	syear:2017},
+						{id:17,	name:'Юрьев Ю.Ю.',       spec:'ИСиТ',    group:3,	syear:2017},
+						{id:18,	name:'Евгеньев Е.В.',    spec:'ПОИБМС',  group:6,	syear:2018},
+						{id:19,	name:'Валерьев В.В.',    spec:'ПОИБМС',  group:7,	syear:2017},
+						{id:20,	name:'Антонов А.А.',     spec:'ПОИБМС',  group:7,	syear:2017},
+						{id:21,	name:'Афанасьев А.А.',   spec:'ИСиТ',    group:2,	syear:2015},
+						{id:22,	name:'Федоров Ф.Ф.',     spec:'ПОИБМС',  group:7,	syear:2016},
+						{id:23,	name:'Николаев Н.Н.',    spec:'ИСиТ',    group:3,	syear:2017}
+								  ];	  
+
+const Sort_Temp = [];	
+	  
+const Data_Events  = [  
+						{id:1,   date:'2019-01-07', text:'Собеседование',
+						company:{id:1,  name: 'iTechArt'}, student:{id:2,	name:'Иванов И.И.',		 spec:'ИСиТ',    group:1,	syear:2016}
+						}, 
+						{id:2,  date:'2018-09-12', text:'Стажировка',
+						company:{id:1,  name: 'iTechArt'}, student:{id:1,	name:'Петров П.П.', 	 spec:'ИСиТ', 	 group:1,	syear:2016}
+						},
+						{id:3,  date:'2018-02-07', text:'Принят на работу',
+						company:{id:2,  name: 'LeverX'}, student:{id:2,  name: 'Иванов И.И.'}
+						},
+						{id:4,  date:'2018-04-22', text:'Стажировка',
+						company: {id:2,  name: 'LeverX'},    student: {id:4,	name:'Кириллов К.К.',	 spec:'ПОИТ',    group:5,	syear:2016}
+						},
+						{id:5,  date:'2018-07-12', text:'Пошел на лаб',
+						company: {id:3,  name: 'iSsoft'},    student:{id:5,	name:'Алексеев А.А.',	 spec:'ДЭВИ',    group:9,	syear:2016}
+						},
+						{id:6,  date:'2018-06-14', text:'Посещает курсы',
+						company:{id:4,  name: 'EPAM'},  student:{id:2,	name:'Иванов И.И.',	spec:'ИСиТ',    group:1,	syear:2016}
+						},
+						{id:7,  date:'2018-04-15', text:'Работает полный день',
+						company:{id:4,  name: 'EPAM'},   student:{id:6,	name:'Сергеев С.С.',     spec:'ПОИБМС',  group:7,	syear:2017}
+						},
+						{id:8,  date:'2017-11-20', text:'Собеседование',
+						company:{id:5,  name: 'IBA'},  student: {id:7,	name:'Александров А.А.', spec:'ПОИБМС',  group:7,	syear:2017}
+						},
+						{id:9, date:'2017-11-30', text:'Собеседование',
+						company: {id:2,  name: 'LeverX'}, student: {id:7,	name:'Александров А.А.', spec:'ПОИБМС',  group:7,	syear:2017}
+						},
+						{id:10, date:'2019-11-30', text:'Посещает курсы',
+						company: {id:2,  name: 'LeverX'}, student:{id:3,	name:'Сидоров С.С.',	 spec:'ПОИТ',    group:4,	syear:2016}
+						}
+								  ];
+const Data_Speciality = [{name:'ИСиТ'}, {name:'ПОИТ'}, {name:'ПОИБМС'}, {name:'ДЭВИ'}];
+			
+const Data_Companies  = [ 
+						{id:1,  name: 'iTechArt'}, 
+						{id:2,  name: 'LeverX'},
+						{id:3,  name: 'iSsoft'},
+						{id:4,  name: 'EPAM'},
+						{id:5,  name: 'IBA'},
+						{id:6,  name: 'Wargaming'}];
+			
+const SpecList= (props)=>{
+			props.getVal(props.data[0].name);
+			let onSpecChange = (e) => {props.getVal(e.currentTarget.value);};
+			let tmp = props.data.map((item, index)=>{return <option key={item.name} value={item.name}> {item.name}</option>});
+			return <select onChange={onSpecChange} defaultValue={props.defaultvalue} >
+			{tmp} </select>;
+			};
+	  
+const CompList= (props)=>{
+			props.getVal(props.data[0].id);
+			let onCompChange = (e) => {props.getVal(e.currentTarget.value);};
+			let tmp = props.data.map((item, index)=>{return <option key={item.id} value={item.id}> {item.name}</option>});
+			return <select onChange={onCompChange} defaultValue={props.defaultvalue} >{tmp} </select>;
+			};
+
+const StudList= (props)=>{
+			props.getVal(props.data[0].id);
+			let onStudChange = (e) => {props.getVal(e.currentTarget.value);};
+			let tmp = props.data.map((item, index)=>{return <option key={item.id} value={item.id}> {item.name}</option>});
+			return <select onChange={onStudChange} defaultValue={props.defaultvalue} >{tmp} </select>;
+			};			
+			
+const REGIM = {
+    S: 'Students',
+    C: 'Companies',
+    E: 'Events'
+  };
+
+class App extends React.Component {
+   state = { Regim:REGIM.S }
+   changeRegim = (r) => {
+   this.state.Regim != r?this.setState({Regim: r}):null;
+   
+   };
+   
+   render(){
+   
+   return (
+			<div className='navPanel'>
+			<Navigation changeRegim = {this.changeRegim} />
+			<Panel Regim = {this.state.Regim} />
+			</div>
+			);
+	}
+};
+
+
+const Navigation = (props) => {
+				const obc = (e)=>
+				{props.changeRegim(REGIM[e.target.id]);
+				[...document.querySelectorAll(".Navigation.activebutton")].map((e)=>{e.className='passivebutton'});
+				//querySelectorAll() возвращает статический NodeList, содержащий все найденные элементы документа, 
+				//которые соответствуют указанному селектору.
+				
+
+				document.getElementById('S').className='passivebutton';
+				document.getElementById('C').className='passivebutton';
+				document.getElementById('E').className='passivebutton';
+
+				document.getElementById(e.target.id).className='activebutton';
+				};
+				return <nav  className='Navigation'>
+					<a id="S" onClick={obc} className='activebutton' > Студенты </a>
+					<a id="C" onClick={obc} className='passivebutton' > Компании </a>
+					<a id="E" onClick={obc} className='passivebutton' > События </a>
+					</nav>
+};     	
+      
+class Panel extends React.Component {
+	state={currStudent: null, currEvent_id:null, currCompany: null, currDataevent: null};
+	
+	updCurrStudent = (student) => {			
+							if(student){
+							this.setState({currStudent: student}, ()=>{
+							[...document.querySelectorAll(".Students.activebutton")].map((e)=>{e.className='passivebuttonStudent'});
+							//document.getElementById(this.state.currStudent.id).className='activebuttonStudent';
+
+							})
+					};
+				return this.state.currStudent; 
+		};
+		
+	updCurrCompany = (company) => {
+							if(company){
+							this.setState({currCompany: company}, ()=>{
+							[...document.querySelectorAll(".Companies.activebutton")].map((e)=>{e.className='passivebuttonStudent'});
+							//document.getElementById(this.state.currCompany.id).className='activebuttonStudent';
+
+							})
+					};
+				return this.state.currCompany; 
+		};
+		
+	updCurrEvent= (dataevent) => {
+							if(dataevent){
+							this.setState({currDataevent: dataevent}, ()=>{
+							[...document.querySelectorAll(".Dataevents.activebutton")].map((e)=>{e.className='passivebuttonStudent'});
+							//document.getElementById(this.state.currDataevent.id).className='activebuttonStudent';
+
+							})
+					};
+				return this.state.currDataevent; 
+		};
+		
+	
+	render(){
+		return <div className='Panel'>
+			{(this.props.Regim == REGIM.S)&&<Students data={Data_Students} sortdata={Sort_Temp} data_events={Data_Events} dataspec={Data_Speciality} currStudent={this.updCurrStudent} currDataevent={this.updCurrEvent} />}
+			{(this.props.Regim == REGIM.S)&&<Student_Events data={Data_Events} data_events={Data_Events} currStudent={this.state.currStudent} currDataevent={this.updCurrEvent} />}
+			{(this.props.Regim == REGIM.C)&&<Companies data={Data_Companies} data_events={Data_Events} sortdata={Sort_Temp} currCompany={this.updCurrCompany}  />}
+			{(this.props.Regim == REGIM.C)&&<Company_Events  data={Data_Events} data_events={Data_Events} currCompany={this.state.currCompany} currDataevent={this.updCurrEvent} />}
+			{(this.props.Regim == REGIM.E)&&<Events data={Data_Events} sortdata={Sort_Temp} currDataevent={this.updCurrEvent}  />}
+			{(this.props.Regim == REGIM.E)&&<Event_Events data={Data_Events} currDataevent={this.updCurrEvent} />}
+			</div>;
+		};
+};
+
+class Students extends React.Component {
+	state={students:this.props.data, dataevents:this.props.data_events, sortStud:this.props.sortdata, flagadd:false, flagupd:false, flagdel:false, flagsort:false, flagSortArray:false};
+	flagx =()=> {return this.state.flagadd||this.state.flagupd||this.state.flagdel;};
+	
+	obc = (e)=>{if(!this.flagx()){
+			this.props.currStudent(this.state.students.find((em)=>em.id == e.target.id));
+			this.setState({flagSelectStud:true})
+			}
+		};
+	
+	addobc = (e)=>{this.setState({flagadd:true})};
+	
+	addcancel = (e)=>{this.setState({flagadd:false})};
+	
+	addadd = (name, spec, year, group)=>{
+				this.setState({flagadd:false});
+				let newid = Math.floor(Math.random() * 100)+30;
+				let newstudent = {id: newid, name: name, spec:spec, group:group, syear:year};
+				this.state.students.unshift(newstudent);
+				this.props.currStudent(newstudent);
+			};
+	
+	
+	updobc = (e)=>{console.log('updobc')
+	this.setState({flagupd:true})
+	};
+	updcancel = (e)=>{this.setState({flagupd:false})};
+	
+	updupd = (id, name, spec, syear, group)=>{
+				let ntx = this.state.students.findIndex((em)=>em.id == id);
+				if(ntx >= 0){
+					this.props.currStudent(this.state.students[ntx]={id:id, name:name, spec:spec, syear:syear, group:group});
+				};
+				
+			this.state.dataevents.map((item, index)=>{
+					if(item.student.id==id){			
+						this.state.dataevents[index].student.name=name;
+						this.state.dataevents[index].student.spec=spec;
+						this.state.dataevents[index].student.group=group;
+						this.state.dataevents[index].student.syear=syear;
+					}
+				});		
+				this.setState({flagupd:false});
+			};
+	
+	
+	delobc = (e)=>{this.setState({flagdel:true})};
+	delcancel = (e)=>{this.setState({flagdel:false})};
+	
+	deldel = (id)=>{
+				let ntx = this.state.students.findIndex((em)=>em.id == id);
+				this.state.students.splice(ntx,1);
+				this.setState({flagdel:false});
+				this.props.currStudent(this.state.students[0]);
+				
+				this.state.dataevents.map((item, index)=>{
+					if(item.student.id==id){			
+						this.state.dataevents[index].student.name="deleted";
+						this.state.dataevents[index].student.spec="-";
+						this.state.dataevents[index].student.group="-";
+						this.state.dataevents[index].student.syear="-";
+					}
+				});		
+
+			};
+	
+	sortobc = (e)=>{this.setState({flagsort:true})};
+	sortcancel = (e)=>{this.setState({flagsort:false})};
+	
+	sortsort = (name, spec, year, group)=>{
+				this.setState({flagsort:false});		
+				this.state.sortStud.splice(0);
+				this.state.students.map((item, index)=>{
+						if(item.name==name&&(name!=null)){	
+							this.state.sortStud.unshift(item);
+						}
+						
+						if(item.spec==spec&&(spec!=null)){		
+							this.state.sortStud.unshift(item);
+						}
+						
+						if(item.year==year&&(year!=null)){							
+							this.state.sortStud.unshift(item);
+						}
+						
+						if(item.group==group&&(group!=null)){								
+							this.state.sortStud.unshift(item);
+						}
+
+						if((name!=null)||(group!=null)||(year!=null)||(spec!=null)){
+							this.setState({flagSortArray:true});								
+						}
+				});
+			};
+		
+	render(){
+	
+		let flag = this.props.currStudent()!=null;
+		let ops = <div className="operations">
+					{!this.flagx()&&<button id="addstudent" className='eventButton' onClick={this.addobc} title="добавить нового студента"><img src="images/icons8_add.png" alt="добавить нового студента"/></button>}
+					{!this.flagx()&&flag&&<button id="delstudent" className='eventButton' onClick={this.delobc} title="удалить студента"><img src="images/icons8_delete.png" alt="удалить студента"/></button>}
+					{!this.flagx()&&flag&&<button id="updstudent" className='eventButton' onClick={this.updobc} title="изменить студента"><img src="images/icons8_update.png" alt="изменить студента"/></button>}
+					{!this.flagx()&&<button id="posstudent" className='eventButton' onClick={this.sortobc} title="найти"><img src="images/icons8_find.png" alt="найти"/></button>}
+				</div>
+		
+		let tmp = null;
+		
+		if(Array.isArray(this.state.students)){
+			if( this.state.flagSortArray){
+				tmp = this.state.sortStud.map((item, index)=>
+					<button key = {item.id} id = {item.id} onClick={this.obc} className='passivebuttonStudent'>
+								 {item.name}
+					</button>);
+
+			}
+			else {
+				tmp = this.state.students.map((item, index)=>
+					<button key = {item.id} id = {item.id} onClick={this.obc} className='passivebuttonStudent'>
+								{item.name}
+					</button>);
+				}		
+		}
+				
+		let addstudent = <AddStudent addadd = {this.addadd} addcancel = {this.addcancel} dataspec={Data_Speciality} />;
+		let updstudent = <UpdStudent currStudent={this.props.currStudent} updupd = {this.updupd} updcancel = {this.updcancel} dataspec={this.props.dataspec} />
+		let delstudent = <DelStudent currStudent={this.props.currStudent} deldel = {this.deldel} delcancel = {this.delcancel} />;
+		let sortstudent = <SortStudent sortsort = {this.sortsort} sortcancel = {this.sortcancel} dataspec={Data_Speciality}/>;
+
+
+		return <div className='Students'>
+					{ops}
+					{this.state.flagdel&&delstudent}
+					{this.state.flagadd&&addstudent}
+					{this.state.flagupd&&updstudent}
+					{this.state.flagsort&&sortstudent}
+					<div className='student_list'> 
+						{tmp} 
+					</div>
+				</div>;
+	};
+};
+
+class Companies extends React.Component {
+
+	state={companies:this.props.data, dataevents:this.props.data_events, sortComp:this.props.sortdata, flagadd:false, flagupd:false, flagdel:false, flagsort:false, flagSortArray:false};	
+	flagx =()=> {return this.state.flagadd||this.state.flagupd||this.state.flagdel;};
+
+	obc = (e)=>{if(!this.flagx()){
+			this.props.currCompany( this.state.companies.find((em)=>em.id == e.target.id));
+			this.setState({flagSelectComp:true})
+			}
+		};
+	
+	
+	addobc = (e)=>{this.setState({flagadd:true})};
+	addcancel = (e)=>{this.setState({flagadd:false})};
+	
+	addadd = (name)=>{
+				this.setState({flagadd:false});
+				let newid = Math.floor(Math.random() * 100)+30;
+				let newcompany = {id: newid, name: name};
+				this.state.companies.unshift(newcompany);
+				this.props.currCompany(newcompany);
+			};
+	
+	
+	updobc = (e)=>{this.setState({flagupd:true})};
+	updcancel = (e)=>{this.setState({flagupd:false})};
+	
+	updupd = (id, name)=>{
+				let ntx = this.state.companies.findIndex((em)=>em.id == id);
+				if(ntx >= 0){
+					this.props.currCompany(this.state.companies[ntx]={id:id, name:name});
+				};
+				
+				this.state.dataevents.map((item, index)=>
+					{
+						if(item.company.id==id){			
+							this.state.dataevents[index].company.name=name;						
+						}
+					});				
+				this.setState({flagupd:false});
+			};
+	
+	
+	delobc = (e)=>{this.setState({flagdel:true})};
+	delcancel = (e)=>{this.setState({flagdel:false})};
+	
+	deldel = (id)=>{
+				let ntx = this.state.companies.findIndex((em)=>em.id == id);
+				this.state.companies.splice(ntx,1);
+				this.setState({flagdel:false});
+				this.props.currCompany(this.state.companies[0]);
+				
+				this.state.dataevents.map((item, index)=>{
+					if(item.company.id==id){			
+						this.state.dataevents[index].company.name="deleted";
+					}
+				});	
+			};
+	
+	sortobc = (e)=>{this.setState({flagsort:true})};
+	sortcancel = (e)=>{this.setState({flagsort:false})};
+	
+	sortsort = (name)=>{
+				this.setState({flagsort:false});				
+				this.state.sortComp.splice(0);
+				
+				this.state.companies.map((item, index)=>{
+					if(item.name==name&&(name!=null)){
+						this.state.sortComp.unshift(item);
+					}
+					if(name!=null){
+							this.setState({flagSortArray:true});								
+					}												
+			});
+		};
+	
+	render(){
+	
+		let flag = this.props.currCompany()!=null;
+		let ops = <div className="operations">
+					{!this.flagx()&&<button id="addcompany" className='eventButton' onClick={this.addobc} title="добавить новую компанию"><img src="images/icons8_add.png" alt="добавить новую компанию"/></button>}
+					{!this.flagx()&&flag&&<button id="delcompany" className='eventButton' onClick={this.delobc} title="удалить компанию"><img src="images/icons8_delete_event.png" alt="удалить компанию"/></button>}
+					{!this.flagx()&&flag&&<button id="updcompany" className='eventButton' onClick={this.updobc} title="изменить компанию"><img src="images/icons8_update.png" alt="изменить компанию"/></button>}
+					{!this.flagx()&&<button id="poscompany" className='eventButton' onClick={this.sortobc} title="найти"><img src="images/icons8_find.png" alt="найти"/></button>}
+				</div>
+		
+		let tmp = null;
+		
+		if(Array.isArray(this.state.companies)){
+			
+			if( this.state.flagSortArray){
+				tmp = this.state.sortComp.map((item, index)=>
+					<button key = {item.id} id = {item.id} onClick={this.obc} className='passivebuttonStudent'>
+								 {item.name}
+					</button>);
+			}
+			else {
+			tmp = this.state.companies.map((item, index)=>
+				<button key = {item.id} id = {item.id} onClick={this.obc} className='passivebuttonStudent'>
+					 {item.name}
+				</button>);
+			}
+			
+		}
+		
+		let addcompany = <AddCompany addadd = {this.addadd} addcancel = {this.addcancel} />;
+		let updcompany = <UpdCompany currCompany={this.props.currCompany} updupd = {this.updupd} updcancel = {this.updcancel} />
+		let delcompany = <DelCompany currCompany={this.props.currCompany} deldel = {this.deldel} delcancel = {this.delcancel} />;
+		let sortcompany = <SortCompany sortsort = {this.sortsort} sortcancel = {this.sortcancel} />;
+
+		return <div className='Students'>
+					{ops}
+					{this.state.flagdel&&delcompany}
+					{this.state.flagadd&&addcompany}
+					{this.state.flagupd&&updcompany}
+					{this.state.flagsort&&sortcompany}
+					<div className='company_list'> 
+						{tmp} 
+					</div>
+				</div>;
+	};
+};
+
+class Events extends React.Component {
+
+	state={events:this.props.data, sortComp:this.props.sortdata, flagsort:false, flagSortArray:false};
+	obc = (e)=>{
+	this.props.currDataevent(this.state.events.find((em)=>em.id == e.target.id));
+		}
+		
+	sortobc = (e)=>{this.setState({flagsort:true})};
+	sortcancel = (e)=>{this.setState({flagsort:false})};
+	
+	sortsort = (date, text, companyName, studentName)=>{
+				this.setState({flagsort:false});				
+				this.state.sortComp.splice(0);
+				
+				this.state.events.map((item, index)=>
+				{						
+					if(item.date==date&&(date!=null)){	
+						this.state.sortComp.unshift(item);
+					}
+						
+					if(item.text==text&&(text!=null)){	
+						this.state.sortComp.unshift(item);
+					}
+						
+					if(item.companyName==companyName&&(companyName!=null)){		
+						this.state.sortComp.unshift(item);
+					}
+						
+					if(item.studentName==studentName&&(studentName!=null)){	
+						this.state.sortComp.unshift(item);
+					}
+					if(date!=null||text!=null||companyName!=null||studentName!=null){
+							this.setState({flagSortArray:true});								
+					}													
+			});
+		};
+
+	
+	render(){
+
+		let tmp = null;		
+		if( this.state.flagSortArray){
+			tmp = this.state.sortComp.map((item, index)=>
+				<button key = {item.id} id = {item.id} onClick={this.obc} className='passivebuttonStudent'>
+						{item.date} {item.text}
+				</button>
+			);}
+				else {
+			tmp = this.state.events.map((item, index)=>
+				<button onClick={this.obc} key = {item.id} id = {item.id} className='passivebuttonStudent'>
+					{item.date} {item.text}
+				</button>
+			);}
+		
+		let sortevent = <SortEvent sortsort = {this.sortsort} sortcancel = {this.sortcancel}/>;
+		
+		return <div className='Students'>
+				<div className='company_list'> {
+					<button id="posstudent" onClick={this.sortobc} className='eventButton' title="найти"><img src="images/icons8_find.png" alt="найти"/></button>}
+					{this.state.flagsort&&sortevent}
+					<br />
+					{tmp} 
+				</div>
+		</div>;
+	};
+};
+
+class Student_Events extends React.Component{
+	constructor(props) {
+		super(props);
+		}
+		state={dataevents:this.props.data_events, flagadd:false, flagupd:false, flagdel:false};
+		flagx =()=> {return this.state.flagadd||this.state.flagupd||this.state.flagdel;};
+
+		obc = (e)=>{if(!this.flagx()){
+			this.props.currDataevent( this.state.dataevents.find((em)=>em.id == e.target.id));
+			this.setState({flagSelectEvent:true})
+			}
+		};
+	
+		addobc = (e)=>{
+			this.setState({flagadd:true})};
+	
+		addcancel = (e)=>{this.setState({flagadd:false})};
+	
+		addadd = (date, text, companyId, companyName)=>{	
+			this.setState({flagadd:false});
+			let newid = Math.floor(Math.random() * 100)+30;
+				
+				let newdataevent = {
+					id:newid,  
+					date:date, 
+					text:text,
+					company:{id:companyId,  name:companyName}, 
+					student:this.props.currStudent
+				};
+
+				this.state.dataevents.unshift(newdataevent);
+				this.props.currDataevent(newdataevent);
+			};	
+		
+		updobc = (e)=>{this.setState({flagupd:true})};
+		updcancel = (e)=>{this.setState({flagupd:false})};
+	
+		updupd = (id, date, text, companyId, companyName)=>{
+				let ntx = this.state.dataevents.findIndex((em)=>em.id == id);
+				if(ntx >= 0){
+					this.props.currDataevent(this.state.dataevents[ntx]={
+					id:id,
+					date:date, 
+					text:text,
+					company:{id:companyId,  name:companyName}, 
+					student:this.props.currStudent
+					});
+				};
+				this.setState({flagupd:false});
+			};
+	
+		delobc = (e)=>{this.setState({flagdel:true})};
+		delcancel = (e)=>{this.setState({flagdel:false})};
+		
+		deldel = (id)=>{
+					let ntx = this.state.dataevents.findIndex((em)=>em.id == id);
+					this.state.dataevents.splice(ntx,1);
+					this.setState({flagdel:false});
+					this.props.currDataevent(this.state.dataevents[0]);
+				};	
+	
+    render(){
+		let h3 = null;
+		let tmp = null;
+		let addStudentEventButton = null;
+		let updStudentEventButton = null;
+		let delStudentEventButton = null;
+		let eventInfo = null;
+		let flag = this.props.currDataevent()!=null;
+		
+		if(this.props.currStudent != null){
+		const {name, spec, syear, group} = this.props.currStudent;
+		h3= <h3> {name}, {spec}-{syear}-{group} <hr/></h3>;
+		
+		addStudentEventButton= <button onClick={this.addobc} className='eventButton' title="добавить новое событие"><img src="images/icons8_add_event.png" alt="добавить новое событие"/></button>;
+		updStudentEventButton=<button onClick={this.updobc} className='eventButton' title="изменить событие"><img src="images/icons8_update.png" alt="изменить событие"/></button>;
+		delStudentEventButton=<button onClick={this.delobc} className='eventButton' title="удалить событие"><img src="images/icons8_delete_event.png" alt="удалить событие"/></button>
+		
+		if(flag){
+			eventInfo=<h3> Выбранное событие: <br /> {this.props.currDataevent().date}-{this.props.currDataevent().text} </h3>
+		}
+
+		tmp=this.props.data.map((item, index)=>{
+			if(item.student.id == this.props.currStudent.id){
+				return <button  onClick={this.obc} key = {item.id} id = {item.id} className='passivebuttonEvent'>
+						 {item.date}: {item.text}, компания: {item.company.name}
+					</button>;
+				}
+			});
+		};
+		
+		let adddataevent = <AddStudentEvent addadd = {this.addadd} addcancel = {this.addcancel} datastud={Data_Students} datacomp={Data_Companies} />;		
+		let upddataevent = <UpdStudentEvent currDataevent={this.props.currDataevent} updupd = {this.updupd} updcancel = {this.updcancel} datastud={Data_Students} datacomp={Data_Companies}  />
+		let deldataevent = <DelStudentEvent currDataevent={this.props.currDataevent} deldel = {this.deldel} delcancel = {this.delcancel} />;
+
+		return <div className="Student_Events"> 
+			{h3} 	
+			{flag&&eventInfo}	
+			
+			{addStudentEventButton}
+			{flag&&updStudentEventButton}
+			{flag&&delStudentEventButton}
+			
+			{this.state.flagadd&&adddataevent}
+			{this.state.flagupd&&upddataevent}
+			{this.state.flagdel&&deldataevent}
+				<br/>
+			{tmp}
+		</div>;
+	}
+};
+
+class Company_Events extends React.Component{
+	constructor(props) {
+		super(props);
+		}
+
+	state={dataevents:this.props.data_events, flagadd:false, flagupd:false, flagdel:false};
+	flagx =()=> {return this.state.flagadd||this.state.flagupd||this.state.flagdel;};
+
+	obc = (e)=>{if(!this.flagx()){
+			this.props.currDataevent( this.state.dataevents.find((em)=>em.id == e.target.id));
+			this.setState({flagSelectEvent:true})
+			}
+		};
+	
+	addobc = (e)=>{this.setState({flagadd:true})};	
+	addcancel = (e)=>{this.setState({flagadd:false})};	
+	
+	addadd = (date, text, studentId, studentName, studentSpec, studentGroup, studentSyear)=>{	
+		this.setState({flagadd:false});
+		let newid = Math.floor(Math.random() * 100)+30;
+		let newdataevent = {
+			id:newid,  
+			date:date, 
+			text:text,
+			company:this.props.currCompany, 
+			student:{id: studentId, name: studentName, spec:studentSpec, group:studentGroup, syear:studentSyear}
+		};
+			this.state.dataevents.unshift(newdataevent);
+				
+	};
+	
+	updobc = (e)=>{this.setState({flagupd:true})};
+	updcancel = (e)=>{this.setState({flagupd:false})};
+	
+	updupd = (id, date, text, studentId, studentName, studentSpec, studentGroup, studentSyear)=>{
+			let ntx = this.state.dataevents.findIndex((em)=>em.id == id);
+			if(ntx >= 0){
+				this.props.currDataevent(this.state.dataevents[ntx]={
+					id:id,
+					date:date, 
+					text:text,
+					company:this.props.currCompany, 
+					student:{id: studentId, name: studentName, spec:studentSpec, group:studentGroup, syear:studentSyear}
+					});
+
+				
+			};
+			this.setState({flagupd:false});
+		};
+	
+	delobc = (e)=>{this.setState({flagdel:true})};
+	delcancel = (e)=>{this.setState({flagdel:false})};
+	
+	deldel = (id)=>{
+				let ntx = this.state.dataevents.findIndex((em)=>em.id == id);
+				this.state.dataevents.splice(ntx,1);
+				this.setState({flagdel:false});
+				this.props.currDataevent(this.state.dataevents[0]);
+			};
+	
+    render(){
+		let h3 = null;
+		let tmp = null;
+		let addCompanyEventButton = null;
+		let updCompanyEventButton = null;
+		let delCompanyEventButton = null;
+		let eventInfo= null;
+		
+		let flag = this.props.currDataevent()!=null;
+		
+		if(this.props.currCompany != null){
+			const {name} = this.props.currCompany;
+			h3= <h3> {name} <hr/></h3>;
+			
+			addCompanyEventButton= <button onClick={this.addobc} className="eventButton" title="добавить новое событие"><img src="images/icons8_add_event.png" alt="добавить новое событие"/></button>;
+			updCompanyEventButton=<button onClick={this.updobc}  className="eventButton" title="изменить событие"><img src="images/icons8_update.png" alt="изменить событие"/></button>;
+			delCompanyEventButton=<button onClick={this.delobc}  className="eventButton" title="удалить событие"><img src="images/icons8_delete_event.png" alt="удалить событие"/></button>
+
+			tmp=this.props.data.map((item, index)=>{
+			if(item.company!=null){		
+				if(item.company.id == this.props.currCompany.id){
+					return <button key = {item.id} onClick={this.obc} id = {item.id} className='passivebuttonEvent'>
+							Студент: {item.student.name} - {item.text}
+							</button>;
+						}
+				}
+			});
+		};
+		
+		if(flag){
+			eventInfo=<h3> 
+				Выбранное событие : {this.props.currDataevent().date}:
+					 {this.props.currDataevent().text} 
+					 <br />
+					 Студент: 
+					 {this.props.currDataevent().student.name} - {this.props.currDataevent().student.spec} - {this.props.currDataevent().student.group} 
+				</h3>
+		}
+		
+		let adddataevent = <AddCompanyEvent addadd = {this.addadd} addcancel = {this.addcancel} datastud={Data_Students} datacomp={Data_Companies} />;		
+		let upddataevent = <UpdCompanyEvent currDataevent={this.props.currDataevent} updupd = {this.updupd} updcancel = {this.updcancel} datastud={Data_Students} datacomp={Data_Companies}  />
+		let deldataevent = <DelCompanyEvent currDataevent={this.props.currDataevent} deldel = {this.deldel} delcancel = {this.delcancel} />;
+
+		return <div className="Company_Events"> 
+			{h3}
+			{eventInfo}
+		{addCompanyEventButton}
+		{flag&&updCompanyEventButton}
+		{flag&&delCompanyEventButton}
+		
+		{this.state.flagadd&&adddataevent}
+		{this.state.flagupd&&upddataevent}
+		{this.state.flagdel&&deldataevent}
+		<br/>{tmp}</div>;
+	}
+};
+
+class Event_Events extends React.Component {
+
+	constructor(props) {
+		super(props);
+	}
+		
+	render(){	
+		let h3 = null;
+		
+		if(this.props.currDataevent() != null){
+			this.icomp = this.props.currDataevent().company.name;	
+			this.istud = this.props.currDataevent().student.name;	
+			this.istudspec = this.props.currDataevent().student.spec;	
+			this.itext = this.props.currDataevent().text;	
+			this.idate = this.props.currDataevent().date;	
+					
+			h3= <h3> <br /><br /> <br />  Дата : {this.idate}  <br /><br /> Компании: {this.icomp} <br /><br /> Студент :  {this.istud} {this.istudspec} <br /><br /> Событие: {this.itext} <br /><br /> <br /> <hr/></h3>;
+		}	
+		
+		return <div className='Event_Events'>
+						{h3} 
+				</div>;
+	}
+};
+
+class AddStudent extends React.Component{
+    constructor(props){
+        super(props);
+		this.iname = null;
+		this.ispec = null;
+		this.iyear = React.createRef();
+		this.igroup = React.createRef();
+		this.state = {validate:false};
+			
+		}
+		
+	getVal = (val)=>{this.ispec = val;};
+	obc = (e) =>{this.props.addadd(this.iname, this.ispec, this.iyear.current.value, this.igroup.current.value);};
+	nameChange = (e)=>{
+		this.iname = e.currentTarget.value;
+		let v = this.iname && this.iname.trim();
+			if(this.state.validate != v){
+				 this.setState({validate:v});};
+		};
+	
+	render(){
+		let Year = new Date().getFullYear();
+		return <table className="opstudent">
+				<thead>
+				<tr>
+					<th colSpan="2"> Новый </th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Имя</td>
+						<td> 
+							<input type="text" onChange={this.nameChange} placeholder='Фамилия И. О.' className='InputName' />
+						</td>
+					</tr>					
+					<tr>
+						<td>Специальность</td>
+						<td>
+							<SpecList getVal={this.getVal} data={this.props.dataspec} defaultvalue={1} />
+						</td>
+					</tr>					
+					<tr>
+						<td>Год поступления</td>
+						<td> 
+							<input type="number" ref={this.iyear} defaultValue={Year} min={Year-10} max={Year}/>
+						</td>
+					</tr>
+					<tr>
+						<td>Группа</td>
+						<td> 
+							<input type="number" ref={this.igroup} defaultValue='1' min='1' max='20' />
+						</td>
+					</tr>
+					<tr>
+						<th colSpan="2">
+							<button onClick={this.obc} disabled={!this.state.validate}> Добавить </button>
+							<button onClick={this.props.addcancel}> Отказаться </button> 
+						</th>
+					</tr>					
+				</tbody>
+			</table>;
+	}
+}
+
+class UpdStudent extends React.Component{
+    constructor(props){
+        super(props);
+		this.iid = this.props.currStudent().id;
+		this.iname = this.props.currStudent().name;
+		this.ispec = this.props.currStudent().spec;
+		this.iyear = React.createRef();
+		this.igroup = React.createRef();
+		this.state = {validate:true};
+		}
+		
+	getVal = (val)=>{this.ispec = val;};
+	nameChange = (e)=>{this.iname = e.currentTarget.value;
+						let v = this.iname && this.iname.trim();
+						if(this.state.validate != v)
+							{ this.setState({validate:v});}
+	};
+	
+	obc = (e) =>{
+		this.props.updupd(this.iid, this.iname, this.ispec, this.iyear.current.value, this.igroup.current.value);
+	};
+
+
+	render(){
+		let Year = new Date().getFullYear();
+		const {id, name, spec, syear, group} = this.props.currStudent();
+		return <table className="opstudent">
+				<thead>
+				<tr>
+					<th colSpan="2"> Изменить ({id}) </th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Имя</td>
+						<td> 
+							<input type="text" onChange={this.nameChange} defaultValue={name} />
+						</td>
+					</tr>					
+					<tr>
+						<td>Специальность</td>
+						<td>
+							<SpecList getVal={this.getVal} data={this.props.dataspec} defaultValue={spec} />
+						</td>
+					</tr>					
+					<tr>
+						<td>Год поступления</td>
+						<td> 
+							<input type="number" ref={this.iyear} defaultValue={syear} min={Year-10} max={Year}/>
+						</td>
+					</tr>
+					<tr>
+						<td>Группа</td>
+						<td> 
+							<input type="number" ref={this.igroup} defaultValue={group} min='1' max='20' />
+						</td>
+					</tr>
+					<tr>
+						<th colSpan="2">
+							<button onClick={this.obc} disabled={!this.state.validate}> Изменить </button>
+							<button onClick={this.props.updcancel}> Отказаться </button> 
+						</th>
+					</tr>					
+				</tbody>
+			</table>;
+	}
+}
+
+class DelStudent extends React.Component{
+    constructor(props){
+        super(props);
+		this.iid = this.props.currStudent().id;
+		}
+
+	obc = (e) =>{this.props.deldel(this.iid);};
+
+	render(){
+		const {id, name, spec, syear, group} = this.props.currStudent();
+		return <table className="opstudent">
+				<thead>
+				<tr>
+					<th colSpan="2"> Удалить студента: ({name}) </th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colSpan="2">{name}, {spec}-{syear}-{group}</td>
+					</tr>					
+					<tr>
+						<th colSpan="2">
+							<button onClick={this.obc}> Удалить </button>
+							<button onClick={this.props.delcancel}> Отказаться </button> 
+						</th>
+					</tr>					
+				</tbody>
+			</table>;
+	}
+}
+
+class SortStudent extends React.Component{
+    constructor(props){
+        super(props);
+		this.iname = null;
+		this.ispec = null;
+		this.iyear = null;
+		this.igroup = null;
+		this.state = {validate:true};
+			
+		}
+		
+	getVal = (val)=>{this.ispec = val;};
+	
+	obc = (e) =>{this.props.sortsort(this.iname, this.ispec, this.iyear, this.igroup);};
+	
+	nameChange = (e)=>{
+		this.iname = e.currentTarget.value;
+	};
+	
+	specChange = (e)=>{	
+		this.ispec = e.currentTarget.value;
+	};
+	
+	yearChange = (e)=>{
+		this.iyear = e.currentTarget.value;					
+	};
+	
+	groupChange = (e)=>{
+		this.igroup = e.currentTarget.value;					
+	};
+
+	render(){
+		let Year = new Date().getFullYear();
+		return <table className="opstudent">
+				<thead>
+				<tr>
+					<th colSpan="2"> Выбрать студентов у которых: </th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Имя</td>
+						<td> 
+							<input type="text" onChange={this.nameChange} placeholder='Фамилия И. О.' className='InputName' />
+						</td>
+					</tr>					
+					<tr>
+						<td>Специальность</td>
+						<td>
+							<input type="text" placeholder='Специальность' onChange={this.specChange}  />
+						</td>
+					</tr>					
+					<tr>
+						<td>Год поступления</td>
+						<td> 
+						
+							<input type="number" placeholder='Год поступления' onChange={this.yearChange}/>
+						</td>
+					</tr>
+					<tr>
+						<td>Группа</td>
+						<td> 
+							<input type="number" placeholder='Группа' onChange={this.groupChange}  />
+						</td>
+					</tr>
+					<tr>
+						<th colSpan="2">
+							<button onClick={this.obc} disabled={!this.state.validate}> Найти </button>
+							<button onClick={this.props.sortcancel}> Отказаться </button> 
+						</th>
+					</tr>					
+				</tbody>
+			</table>;
+	}
+}
+
+class SortCompany extends React.Component{
+    constructor(props){
+        super(props);
+		this.iname = null;
+		this.state = {validate:true};						
+		}
+
+	
+	obc = (e) =>{this.props.sortsort(this.iname);};
+	
+	nameChange = (e)=>{this.iname = e.currentTarget.value;
+	};
+	
+	
+	render(){
+		let Year = new Date().getFullYear();
+		return <table className="opstudent">
+				<thead>
+				<tr>
+					<th colSpan="2"> Найти компанию по названию</th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Название компании</td>
+						<td> 
+							<input type="text" onChange={this.nameChange} placeholder='Название' className='InputName' />
+						</td>
+					</tr>					
+					
+					<tr>
+						<th colSpan="2">
+							<button onClick={this.obc} disabled={!this.state.validate}> Найти </button>
+							<button onClick={this.props.sortcancel}> Отказаться </button> 
+						</th>
+					</tr>					
+				</tbody>
+			</table>;
+	}
+}
+
+class SortEvent extends React.Component{
+    constructor(props){
+        super(props);
+		this.idate = null;
+		this.itext = null;
+		this.icompName = null;
+		this.istudName = null;
+		this.state = {validate:true};
+	}
+
+	obc = (e) =>{this.props.sortsort(this.idate, this.itext, this.icompName, this.istudName);};
+	
+	dataChange = (e)=>{
+		this.idate = e.currentTarget.value;
+
+	};
+	
+	textChange = (e)=>{
+		this.itext = e.currentTarget.value;
+	};
+	
+	compNameChange = (e)=>{
+		this.icompName = e.currentTarget.value;					
+	};
+
+	studNameChange = (e)=>{
+		this.istudName = e.currentTarget.value;						
+	};
+	
+	render(){
+		let Year = new Date().getFullYear();
+		return <table className="opstudent">
+				<thead>
+				<tr>
+					<th colSpan="2"> Выбрать события из списка у которых: </th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Дата</td>
+						<td> 
+							<input type="date" onChange={this.dataChange} className='InputName' />
+						</td>
+					</tr>					
+					<tr>
+						<td>Описание</td>
+						<td> 
+							<input type="text" onChange={this.textChange} placeholder='Описание' className='InputName' />
+						</td>
+					</tr>			
+					<tr>
+						<td>Студент</td>
+						<td> 
+							<input type="text" onChange={this.studNameChange} placeholder='Фамилия И. О.' className='InputName' />
+						</td>
+					</tr>			
+					<tr>
+						<td>Компания</td>
+						<td> 
+							<input type="text" onChange={this.compNameChange} placeholder='Название'  className='InputName' />
+						</td>
+					</tr>			
+					
+					<tr>
+						<th colSpan="2">
+							<button onClick={this.obc} disabled={!this.state.validate}> Найти </button>
+							<button onClick={this.props.sortcancel}> Отказаться </button> 
+						</th>
+					</tr>					
+				</tbody>
+			</table>;
+	}
+}
+
+class AddCompany extends React.Component{
+    constructor(props){
+        super(props);
+		this.iname = null;
+		this.state = {validate:false};
+		}
+		
+	obc = (e) =>{this.props.addadd(this.iname);};
+	nameChange = (e)=>{
+		this.iname = e.currentTarget.value;
+		let v = this.iname && this.iname.trim();
+			if(this.state.validate != v){
+				this.setState({validate:v});
+			};
+	};
+	
+	render(){
+		return <table className="opscompany">
+				<thead>
+				<tr>
+					<th colSpan="2"> Добавить новую компанию: </th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Название: </td>
+						<td> 
+							<input type="text" onChange={this.nameChange} placeholder='Название' className='InputName' />
+						</td>
+					</tr>			
+					<tr>
+						<th colSpan="2">
+							<button onClick={this.obc} disabled={!this.state.validate}> Добавить </button>
+							<button onClick={this.props.addcancel}> Отказаться </button> 
+						</th>
+					</tr>					
+				</tbody>
+			</table>;
+	}
+}
+
+class UpdCompany extends React.Component{
+    constructor(props){
+        super(props);
+		this.iid = this.props.currCompany().id;
+		this.iname = this.props.currCompany().name;
+		this.state = {validate:true};
+		}
+		
+	nameChange = (e)=>{
+		this.iname = e.currentTarget.value;
+		let v = this.iname && this.iname.trim();
+		if(this.state.validate != v){
+			this.setState({validate:v});
+		}
+	};
+	
+	obc = (e) =>{
+		console.log('this.iname', this.iname)
+		this.props.updupd(this.iid, this.iname);
+	};
+
+
+	render(){
+		const {id, name} = this.props.currCompany();
+		return <table className="opscompany">
+				<thead>
+				<tr>
+					<th colSpan="2"> Изменить ({id}) </th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Название</td>
+						<td> 
+							<input type="text" onChange={this.nameChange} defaultValue={name} />
+						</td>
+					</tr>					
+					<tr>
+						<th colSpan="2">
+							<button onClick={this.obc} disabled={!this.state.validate}> Изменить </button>
+							<button onClick={this.props.updcancel}> Отказаться </button> 
+						</th>
+					</tr>					
+				</tbody>
+			</table>;
+	}
+}
+
+class DelCompany extends React.Component{
+    constructor(props){
+        super(props);
+		this.iid = this.props.currCompany().id;
+		}
+
+	obc = (e) =>{console.log('del_comp', this.iid); 
+	this.props.deldel(this.iid);};
+
+	render(){
+		const {id, name} = this.props.currCompany();
+		return <table className="opscompany">
+				<thead>
+				<tr>
+					<th colSpan="2"> Удалить компнанию ({id}) </th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colSpan="2">Название компании: {name}</td>
+					</tr>					
+					<tr>
+						<th colSpan="2">
+							<button onClick={this.obc}> Удалить </button>
+							<button onClick={this.props.delcancel}> Отказаться </button> 
+						</th>
+					</tr>					
+				</tbody>
+			</table>;
+	}
+}
+
+
+class AddStudentEvent extends React.Component{
+    constructor(props){
+        super(props);
+		this.icompId = null;
+		this.icompName = null;
+		this.idate = React.createRef();
+		this.itext = React.createRef();
+		this.state = {validate:false};
+		this.state = {validateDate:false};
+
+		}
+		
+	getVal = (val)=>{this.icompId = val;
+
+	this.props.datacomp.map((item, index)=>{
+			if(item.id==this.icompId){
+			this.icompName=item.name;		
+			}
+		});
+	
+	};
+	
+	
+	obc = (e) =>{this.props.addadd(this.idate, this.itext, this.icompId, this.icompName);};
+
+	dataChange = (e)=>{
+		this.idate = e.currentTarget.value;
+		let v = this.idate && this.idate.trim();
+			if(this.state.validateDate != v){
+				this.setState({validateDate:v});
+			};
+		};
+
+	textChange = (e)=>{
+		this.itext = e.currentTarget.value;
+		let v = this.itext && this.itext.trim();
+			if(this.state.validate != v){
+				this.setState({validate:v});
+			};};
+	
+	render(){
+		const {id, name} = this.props.datacomp[0];
+		return <table className="opstudentEvent">
+				<thead>
+				<tr>
+					<th colSpan="2"> Добавление нового события студенту </th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Дата</td>
+						<td> 
+							<input type="date" onChange={this.dataChange} className='InputName' />
+						</td>
+					</tr>
+					<tr>
+						<td>Событие</td>
+						<td> 
+							<input type="text" onChange={this.textChange} placeholder='Описание' className='InputName' />
+						</td>
+					</tr>						
+					<tr>
+						<td>Компания</td>
+						<td>
+							<CompList getVal={this.getVal} data={this.props.datacomp} defaultValue={id} />
+						</td>
+					</tr>					
+					
+					<tr>
+						<th colSpan="2">
+							<button onClick={this.obc} disabled={!this.state.validate||!this.state.validateDate}> Добавить </button>
+							<button onClick={this.props.addcancel}> Отказаться </button> 
+						</th>
+					</tr>					
+				</tbody>
+			</table>;
+	}
+}
+
+class UpdStudentEvent extends React.Component{
+    constructor(props){
+        super(props);
+		this.intx = null;
+		this.temp = 0;
+		this.icompId = null;
+		this.iid = this.props.currDataevent().id;
+		this.idate = this.props.currDataevent().date;
+		this.itext = this.props.currDataevent().text;
+		this.icompanyId = this.props.currDataevent().company.id;
+		this.iCompanyName = this.props.currDataevent().company.name;
+		
+		this.props.datacomp.map((item, index)=>{
+			this.temp++;
+			if(item.id==this.icompId){
+				this.intx=this.temp;
+				this.icompName=item.name;
+			}
+		});
+				
+
+		this.state = {validateDate:true};
+		this.state = {validateText:true};
+	}
+
+	getVal = (val)=>{this.icompId = val;
+	this.props.datacomp.map((item, index)=>
+		{
+			if(item.id==this.icompId){
+				this.icompName=item.name;
+				}
+			});
+		}
+	
+	dataChange = (e)=>{
+		this.idate=e.currentTarget.value;
+		let v = this.idate && this.idate.trim();
+			if(this.state.validateDate != v){
+				this.setState({validateDate:v});
+			};
+	};
+	
+	textChange = (e)=>{
+		this.itext=e.currentTarget.value;
+		let v = this.itext && this.itext.trim();
+			if(this.state.validateText != v){
+				this.setState({validateText:v});
+			};
+	};
+	
+	descChange = (e)=>{
+	};
+	
+	obc = (e) =>{
+		this.props.updupd(this.iid, this.idate, this.itext, this.icompId, this.icompName);
+	};
+
+	render(){
+		const {id} = this.iid;
+		return <table className="opstudentEvent">
+				<thead>
+				<tr>
+					<th colSpan="2"> Изменить ({this.iid} {this.idate} {this.itext} {this.iCompanyName}) </th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Дата</td>
+						<td> 
+							<input type="date" onChange={this.dataChange} defaultValue={this.idate} />
+						</td>
+					</tr>
+						<tr>
+						<td>Событие</td>
+						<td> 
+							<input type="text" onChange={this.textChange} placeholder='Описание' defaultValue={this.itext} />
+						</td>
+					</tr>
+						<tr>
+						<td>Компания</td>
+						<td> 
+							<CompList getVal={this.getVal} data={this.props.datacomp} defaultvalue={this.intx} />
+						</td>
+					</tr>
+							
+					<tr>
+						<th colSpan="2">
+							<button onClick={this.obc} > Изменить </button>
+							<button onClick={this.props.updcancel}> Отказаться </button> 
+						</th>
+					</tr>					
+				</tbody>
+			</table>;
+	}
+}
+
+class DelStudentEvent extends React.Component{
+    constructor(props){
+        super(props);
+		this.iid = this.props.currDataevent().id;
+		this.idate = this.props.currDataevent().date;
+		this.itext = this.props.currDataevent().text;
+		this.icompanyId = this.props.currDataevent().company.id;
+		this.iCompanyName = this.props.currDataevent().company.name;
+		}
+
+	obc = (e) =>{
+		this.props.deldel(this.iid);
+	};
+
+	render(){
+		return <table className="opstudentEvent">
+				<thead>
+				<tr>
+					<th colSpan="2"> Удалить ({this.iid} {this.idate} {this.itext} {this.iCompanyName}) </th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colSpan="2"></td>
+					</tr>					
+					<tr>
+						<th colSpan="2">
+							<button onClick={this.obc}> Удалить </button>
+							<button onClick={this.props.delcancel}> Отказаться </button> 
+						</th>
+					</tr>					
+				</tbody>
+			</table>;
+	}
+}
+
+class AddCompanyEvent extends React.Component{
+    constructor(props){
+        super(props);
+		this.istudId = 1;
+		this.istudName = null;
+		this.istudSpec = null;
+		this.istudGroup = null;
+		this.istudYear = null;
+		this.idate = React.createRef();
+		this.itext = React.createRef();
+		this.state = {validate:false};	
+		this.state = {validateDate:false};	
+		}
+		
+	getVal = (val)=>{
+		this.istudId = val;
+	
+		this.props.datastud.map((item, index)=>{
+			if(item.id==this.istudId){
+				this.istudName = item.name;
+				this.istudSpec = item.spec;
+				this.istudGroup = item.group;
+				this.istudYear = item.syear;
+			}
+		});
+	
+	};
+	
+	obc = (e) =>{
+	this.props.addadd(this.idate, 
+	this.itext, this.istudId,
+		this.istudName, this.istudSpec, this.istudGroup, this.istudYear);};
+
+	dataChange = (e)=>{
+		this.idate = e.currentTarget.value;
+		let v = this.idate && this.idate.trim();
+			if(this.state.validateDate != v){
+				this.setState({validateDate:v});
+			};};
+	textChange = (e)=>{
+		this.itext = e.currentTarget.value;
+		let v = this.itext && this.itext.trim();
+			if(this.state.validate != v){
+				this.setState({validate:v});
+			};};
+	
+	render(){
+		return <table className="opstudentEvent">
+				<thead>
+				<tr>
+					<th colSpan="2"> Добавить новое событие для компании </th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Дата</td>
+						<td> 
+							<input type="date" onChange={this.dataChange} className='InputName' />
+						</td>
+					</tr>
+					<tr>
+						<td>Событие</td>
+						<td> 
+							<input type="text" onChange={this.textChange} className='InputName' />
+						</td>
+					</tr>						
+					<tr>
+						<td>Студент</td>
+						<td>
+							<StudList getVal={this.getVal} data={this.props.datastud} defaultvalue={1} />
+						</td>
+					</tr>					
+					
+					<tr>
+						<th colSpan="2">
+							<button onClick={this.obc} disabled={!this.state.validate||!this.state.validateDate} > Добавить </button>
+							<button onClick={this.props.addcancel}> Отказаться </button> 
+						</th>
+					</tr>					
+				</tbody>
+			</table>;
+	}
+}
+
+class UpdCompanyEvent extends React.Component{
+    constructor(props){
+        super(props);
+		this.intx = null;
+		this.temp = 0;
+		this.istudId = null;
+		this.istudName = null;
+		this.istudSpec = null;
+		this.istudGroup = null;
+		this.istudYear = null;
+		this.idate = React.createRef();
+		this.itext = React.createRef();
+		
+		this.iid = this.props.currDataevent().id;
+		this.idate = this.props.currDataevent().date;
+		this.itext = this.props.currDataevent().text;
+		this.icompanyId = this.props.currDataevent().company.id;
+		this.iCompanyName = this.props.currDataevent().company.name;
+		
+		this.state = {validate:true};
+		
+		//this.getVal(this.props.currDataevent().student.id);
+	}
+
+	getVal = (val)=>{
+		this.istudId = val;
+	this.props.datastud.map((item, index)=>{
+		this.temp++;
+		if(item.id==this.istudId){			
+			this.intx=this.temp;
+			this.istudName = item.name;
+			this.istudSpec = item.spec;
+			this.istudGroup = item.group;
+			this.istudYear = item.syear;
+			}
+		});
+	}
+	
+	dataChange = (e)=>{this.idate = e.currentTarget.value;};
+	textChange = (e)=>{this.itext = e.currentTarget.value;};
+
+	obc = (e) =>{
+		this.props.updupd(this.iid, this.idate, 
+		this.itext, this.istudId,
+		this.istudName, this.istudSpec, this.istudGroup, this.istudYear);
+	};
+
+
+	render(){
+		const {id} = this.iid;
+		return <table className="opstudentEvent">
+				<thead>
+				<tr>
+					<th colSpan="2"> Изменить ({this.iid} {this.idate} {this.itext} {this.istudName}) </th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Дата</td>
+						<td> 
+							<input type="text" onChange={this.dataChange} defaultValue={this.idate} />
+						</td>
+					</tr>
+						<tr>
+						<td>Описание</td>
+						<td> 
+							<input type="text" onChange={this.textChange} defaultValue={this.itext} />
+						</td>
+					</tr>
+						<tr>
+					<td>Студент</td>
+						<td>
+							<StudList getVal={this.getVal} data={this.props.datastud} defaultvalue={this.intx} />
+						</td>
+					</tr>
+							
+					<tr>
+						<th colSpan="2">
+							<button onClick={this.obc} disabled={!this.state.validate}> Изменить </button>
+							<button onClick={this.props.updcancel}> Отказаться </button> 
+						</th>
+					</tr>					
+				</tbody>
+			</table>;
+	}
+}
+
+class DelCompanyEvent extends React.Component{
+    constructor(props){
+        super(props);
+		this.iid = this.props.currDataevent().id;
+		this.idate = this.props.currDataevent().date;
+		this.itext = this.props.currDataevent().text;
+		this.icompanyId = this.props.currDataevent().company.id;
+		this.iCompanyName = this.props.currDataevent().company.name;
+		}
+
+	obc = (e) =>{
+	this.props.deldel(this.iid);
+	};
+
+	render(){
+		return <table className="opstudentEvent">
+				<thead>
+				<tr>
+					<th colSpan="2"> Удалить ({this.iid} {this.idate} {this.itext} {this.iCompanyName}) </th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colSpan="2"></td>
+					</tr>					
+					<tr>
+						<th colSpan="2">
+							<button onClick={this.obc}> Удалить </button>
+							<button onClick={this.props.delcancel}> Отказаться </button> 
+						</th>
+					</tr>					
+				</tbody>
+			</table>;
+	}
+}
+
+
+        ReactDOM.render(
+		 <div>
+			<App />
+		</div>,
+		document.getElementById('root')
+	  );
+
+
+	  
+    </script>
+
+  </body>
+</html>
+
